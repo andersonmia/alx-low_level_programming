@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "main.h"
 
+
 /**
  * main - Check description
  * Description: It prints the word main, followed by a new line.
