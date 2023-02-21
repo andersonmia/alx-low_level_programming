@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <unistd.h
+#include "main.h"
+
 /**
  * main - Entry point
  *
@@ -8,6 +8,12 @@
  */
 int main(void)
 {
-    printf("_putchar\n");
-    return 0;
+    char word[4] = "main";
+    int i;
+
+    for (i = 0; i < 4; i++)
+        _putchar(word[i]);
+    _putchar('\n');
+
+    return (0);
 }
