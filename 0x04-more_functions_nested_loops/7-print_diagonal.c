@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * print_diagonal - a function that draws a diagonal line on the terminal.
