@@ -1,60 +1,124 @@
 #include "main.h"
 
 /**
-* infinite_add - C function that adds two numbers stored
-*in strings to a buffer.
-*Assumes that strings are never empty and
-*that numbers will always be positive, or 0.
-*Assumes there are only digits stored in the number strings.
-*If result can be stored in the buffer,
-*returns a pointer to the result.
-*If result cannot be stored in the buffer, returns `0`.
-*@n1:first number to be added
-*@n2:second number to be added
-*@r: store result
-*@size_r: size of buffer
-*Return:returns pointer to result
-*/
+ * _strlen - a function that takes a pointer to an int as parameter and
+ * updates the value it points to to 98
+ * @s: chaine of caractere
+ *
+ * Return: 1 or 0
+ */
 
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+int _strlen(char *s)
 {
+	int i = 0;
+
+	while (s[i])
+		i++;
+	return (i);
 }
 
 /**
-* add_strings - Adds the numbers stored in two strings.
-* @n1: The string containing the first number to be added.
-* @n2: The string containing the second number to be added.
-* @r: The buffer to store the result.
-* @r_index: The current index of the buffer.
-*
-* Return: If r can store the sum - a pointer to the result.
-*         If r cannot store the sum - 0.
-*/
+ * _bigger - a function that takes a pointer to an int as parameter and
+ * updates the value it points to to 98
+ * @a: chaine of caractere
+ * @b: chaine of caractere
+ *
+ * Return: the bigger of a and b
+ */
 
-char *add_strings(char *n1, char *n2, char *r, int r_index)
+int _bigger(int a, int b)
 {
-	int num, tens = 0;
+	if (a <= b)
+		return (b);
+	else
+		return(a);
+}
 
-	for (; *n1 && *n2; n1--, n2--, r_index--)
+/**
+ * rev_string - a function that takes a pointer to an int as parameter and
+ * @s: chaine of caractere
+ *
+ * Return: 1 or 0
+ */
+
+void rev_string(char *s)
+{
+	int i = 0, taille, k;
+	char c;
+
+	while (s[i] != '\0')
+		i++;
+
+	i--;
+	taille = i;
+	k = i / 2;
+	i = 0;
+
+	while (i <= k)
 	{
-		num = (*n1 - '0') + (*n2 - '0');
-		num += tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
+		c = s[i];
+		s[i] = s[taille];
+		s[taille] = c;
+		i++;
+		taille--;
 	}
+}
 
-	for (; *n1; n1--; r_index++)
+
+/**
+  * infinite_add - print numbers chars
+  * @n1: the chaine of caractere
+  * @n2: the chaine of caractere
+  * @r: the chaine of caractere
+  * @size_r: the chaine of caractere
+  * Return: 0
+ **/
+
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+	char *bigger_ch, *smaller_ch, ret = '0';
+	int taille_n1, taille_n2;
+	int i = 0, j = 0;
+
+	taille_n1 = _strlen(n1);
+	taille_n2 = _strlen(n2);
+	
+	if (taille_n1 >= taille_n2)
 	{
-		num = *(n1 - '0') + tens; 
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
+		bigger_ch = n1;
+		smaller_ch = n2;
 	}
-
-	for (; *n2; n2--;  r_index--)
+	else 
 	{
-		num = (*n2 - '0') + tens; 
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10; 
+		bigger_ch = n2;
+		smaller_ch = n1;
 	}
 	
+	if (size_r < _bigger(taille_n1, taille_n2))
+		return (0);
+	else
+	{
+		rev_string(bigger_ch);
+		rev_string(smaller_ch);
+		while(bigger_ch[j])
+		{
+			if(smaller_ch[i])
+			{
+				r[i] = (((smaller_ch[i] - '0') + (bigger_ch[i] - '0') + (ret - '0')) % 10) + '0';
+				ret = (((smaller_ch[i] - '0') + (bigger_ch[i] - '0') + (ret - '0')) / 10) + '0';
+			}
+			else
+			{
+				r[i] = (((bigger_ch[i] - '0') + (ret - '0')) % 10) + '0';
+				ret = (((bigger_ch[i] - '0') + ret) / 10);
+			}
+
+			i++;
+		}
+		rev_string(r);
+		rev_string(bigger_ch);
+		rev_string(smaller_ch);
+		return (r);
+
+	}
 }
