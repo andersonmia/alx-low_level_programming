@@ -12,7 +12,7 @@
 
 int main(void)
 {
-        char word[9] = "Holberton";
+        char word[9] = "main.h";
         int i;
 
 	for (i = 0; i < 9; i++)

@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * main - check the code for Holberton School students.
+ * main - check the code for main.h School students.
  *
  * Return: Always 0
  */
@@ -11,7 +11,7 @@ int main(void)
 	char *str;
 	int len;
 
-	str = "Holberton!";
+	str = "main.h!";
 	len = _strlen(str);
 	printf("%d\n", len);
 	return (0);
