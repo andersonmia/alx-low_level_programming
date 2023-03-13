@@ -24,7 +24,8 @@
 char *_strdup(char *str)
 {
 	char *cpy;
-	int index, len;
+	int index;
+	int len;
 
 	if (str == NULL)
 		return (NULL);
